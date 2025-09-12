@@ -4,6 +4,9 @@ const connectDB = require("./db/conectDB");
 const path = require("path")
 const todoRouter = require("./routes/todo.routes")
 
+//routes
+app.use("/todo",todoRouter);
+
 const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,"public")));

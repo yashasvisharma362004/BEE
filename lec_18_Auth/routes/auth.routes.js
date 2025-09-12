@@ -72,6 +72,13 @@ const verifyUser = require("../middlewares/verify.middleware");
 const verifyAdmin = require("../middlewares/verifyAdmin.middleware");
 const verifyGoldUser = require("../middlewares/verify.prem.middleware")
 
+router.get("/signup",(req,res)=>{
+  res.render("signup");
+})
+
+router.get("/login",(req,res)=>{
+  res.render("login");
+})
 router.post("/signup",async (req,res)=>{
   try {
     let {name,email,password} = req.body;
@@ -85,7 +92,8 @@ router.post("/signup",async (req,res)=>{
       email:email,
       password:hashPass
     })
-    res.status(200).json({message:"user signup successfull",user})
+    res.redirect("/auth/login");
+    //res.status(200).json({message:"user signup successfull",user})
   } catch (error) {
     res.status(500).json({message:error.message});
   }
@@ -127,7 +135,8 @@ router.post("/login",async (req,res)=>{
     )
     res.cookie("token",token,{httpOnly:true,secure:false,domain:"localhost",path:"/",maxAge:24*60*60*1000});
     // res.status(200).json({message:"user loggedin successfull"})
-    res.status(200).json({message:"user loggedin successfull",token})
+    res.redirect("/")
+    //res.status(200).json({message:"user loggedin successfull",token})
   } catch (error) {
     res.status(400).json({message:error.message})
   }

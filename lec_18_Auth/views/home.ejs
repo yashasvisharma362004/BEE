@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            max-height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-card h2 {
+            font-size: 1.2rem;
+            margin: 10px 0 5px;
+            color: #222;
+        }
+
+        .product-card h3 {
+            font-size: 1rem;
+            color: #28a745;
+            margin: 5px 0;
+        }
+
+        .product-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 10px 0 15px;
+        }
+
+        .product-card button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .product-card button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Products</h1>
+    <%=products.forEach(product) =>{ %>
+        <form action="/product/<%=product._id %>" class="product-card">
+        <img src="" alt="">
+        <h2><%=product.name%></h2>
+        <h3><%=product.price%></h2>
+        <p><%=product.description%></h2>
+        <button>View</button>
+        </form>
+    <%}%>
+    
+</body>
+</html>

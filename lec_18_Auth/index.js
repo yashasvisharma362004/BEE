@@ -2,23 +2,37 @@ const express = require("express");
 const connectDB = require("./db/connectDd");
 const app = express();
 const PORT = 3000;
+const product = require('./models/product.model');
 require("dotenv").config();
+const path = require("path");
+
 // router
 const authRouter = require("./routes/auth.routes")
-const userRouter = require("./routes/user.route")
+const userRouter = require("./routes/user.route");
+const verifyUser = require("./middlewares/verify.middleware");
 
 
 
 // routes
-// app.use("view engine","ejs");
-// app.use("views",Path.join(__dirname,"views"))
+ app.set("view engine","ejs");
+ app.set("views",path.join(__dirname,"views"))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.get('/',(req,res)=>{
-//   res.render("hello")
-// })
-
+ app.get('/',verifyUser,async(req,res)=>{
+  // const name = "Yashasvi Sharma"
+  // const contacts = [{name:"Yashu",phone:9328469324},{name:"Ye mera dusra num h",phone:9817697241}]
+  //  res.render("hello",{username:name,contacts})
+   //this is same as above line
+   //res.render("hello",{username:name,contacts:contacts})
+try{
+   const products = await product.find();
+   res.render("home",{products});
+}catch(error){
+  res.status(400).json({message:error.message});
+}
+ })
+//aisa lga tumse mil k
 app.use("/auth",authRouter);
 app.use("/user",userRouter);
 app.get("/", (req, res) => {	});

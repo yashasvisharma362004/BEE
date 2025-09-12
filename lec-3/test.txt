@@ -1,1 +1,3 @@
-Hello World
+//Schema->define the str
+Schema model-model
+using model we do crud operation
