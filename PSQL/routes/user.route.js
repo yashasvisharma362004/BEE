@@ -1,3 +1,4 @@
+//this is user router
 const express = require("express");
 const prisma = require("../prisma/client");
 const router = express.Router();
