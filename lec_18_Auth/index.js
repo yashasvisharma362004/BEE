@@ -1,11 +1,17 @@
 const express = require("express");
 const connectDB = require("./db/connectDd");
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 const product = require('./models/product.model');
 require("dotenv").config();
 const path = require("path");
-
+const cors = require("cors");
+app.use(cors({
+  origin: "http://localhost:3000",
+  methods:["Get","Post","Put","Delete"],
+  credentials:true
+}))
+  
 // router
 const authRouter = require("./routes/auth.routes")
 const userRouter = require("./routes/user.route");
