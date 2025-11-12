@@ -1,18 +1,35 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
+// const urlSchema = new mongoose.Schema({
+//     shortId:{
+//         type:String,
+//         required:true,
+//         unique:true
+//     },
+//     requiredURL:{
+//         type:String,
+//         required:true,
+//     },
+//     visitHistory:[{timestamp:{type:Number}}]
+
+// },{timestamps:true});
+
+// const URL = mongoose.model("URL",urlSchema);
+// module.exports = URL;
+
+const mongoose = require("mongoose");
 const urlSchema = new mongoose.Schema({
     shortId:{
         type:String,
         required:true,
-        unique:true
+        unique:true,
     },
     requiredURL:{
         type:String,
         required:true,
     },
-    visitHistory:[{timestamp:{type:Number}}]
-
+    visitHistory:[{timestamp:{type:Number}}],
 },{timestamps:true});
 
-const URL = mongoose.model("URL",urlSchema);
-module.exports = URL;
+const url = mongoose.model("URL",urlSchema);
+module.exports = url;
